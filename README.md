@@ -45,7 +45,7 @@
 
 Author: Kevin Post
 
-My partner is ???, [portfolio link](https://github.com/partner/iot-portfolio)
+My partner is Reo Kuchida, [portfolio link](https://github.com/kuchidareo/iot-portfolio-template)
 
 In my team for the final project, I also had the following members:
 - <replace these pointy brackets with their full name>, [portfolio link](https://github.com/partner/iot-portfolio)
