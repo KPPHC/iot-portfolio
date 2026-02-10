@@ -130,6 +130,12 @@ Gateway
 Nodes
 Devices
 
+![architecture](pictures/20260210_135131.jpg)
+
+![node-red](pictures/20260210_133835.jpg)
+
+![m5stick](pictures/20260210_135126.jpg)
+
 Demo
 ## Reflection 1
 [Reflection 1](/Reflections/ref01.md)
