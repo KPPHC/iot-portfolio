@@ -6,41 +6,38 @@
 In this module we are introduced to the IoT course, the team behind it, and a little bit about what is IoT itself. Definitely a highlight is the teaching philosophy behind the IoT course, involving of course some techniques (open-concept classroom, ungrading), but also the overall mentality guiding these techniques - we are here to learn and teach, not for giving grades or passing exams. One of the most difficult tasks (thus far into the day) has been thinking of a challenge, that we would like to overcome - there are ideas that I can bring from my own PhD projects, that are in dire need of additional help.
 
 ## Task Inspirations
-
 - The mentality behind teaching guides what techniques to use. Who or what is a teacher? What is the goal?
 - To be filled in later in more detail (if I don't forget), but excellence in implementation, derived from repeated cycles of trial-failure-reflection.
 
 ## Task Personal Profile
-1. what programming experience? what type of experience?
-    1. All the experience I have is from just trying to clobber up whatever solutions I can for the projects I am working on, with no formal training. I do very heavily rely on AI to get my stuff done, but am slowly-slowly learning.
-2. who knows microcontrollers? what have you done with microcontrollers? which ones have you used?
-    1. I have worked with M5Sticks
-3. who has worked with single board computers? which have you used (Pi, Beaglebone, Labrador)?
-    1. RPi-s
-    2. at one point RPi was very central infrastructure, but this has changed
-4. who is a maker or part of a maker community, knows i.e. 3D printing? what do you like or would you like about it? how could it relate to this class?
-    1. making, repairing.
-5. who already thinks to have an idea what IoT is? what do you already know about IoT?
-    1. It might be a stretch to say
-    2. ulno hopes for us to give context
-6. what are your expectations on this class?
+I have mainly worked with Python, but a little bit of experience with Java and C++. I have worked with small things here and there, including some small programs for automating spreadsheet tasks, and some experience with NXC many years ago, however routinely started performing programming tasks a year ago as I enroled as a PhD student. Throughout this year, I have slowly-slowly learned more about programming, project and data management through trial, error, and AI. I have learned a lot, I feel like I have improved a lot, but there is still a long way to go for me.
+
+In this year, I have worked with various microcontrollers, to construct simple prototypes and make experiments. The main thing has been M5Sticks connected to various sensors, such as a light sensor. Most of the time, I have not worked with constructing the physical prototype, as these I have inherited from other, senior lab members. However, I have worked on their software side, in how they interact with other components of the system. In addition to M5Sticks, I have worked with an ESP32, connecting it to a AS7265X Spectral Triad - but again, the prototype was created by a senior lab member, and I have just been using it. I wish to learn more, to be able to create such prototypes myself, and to further improve them.
+
+I have some experience with Raspberry Pi-s, mainly deploying lightweight LLMs on them to evaluate the feasibility of natural language interaction at constrained edge settings, such as for agricultural scouting - experiment 1 [in this paper](https://ieeexplore.ieee.org/abstract/document/11361393) was devised, implemented, and conducted by me.
+
+I have some limited experience with 3D printing, working with TinkerCAD and a WIIDO printer to make a casing for one of my wearable prototypes. I wouldn't consider myself a maker, as I have not been part of the community. But at time I do find myself travelling to the hardware store and DIY-ing the most interesting stuff for my research, such as (acrylic casts, gelatine skin phantoms)[https://researchportal.helsinki.fi/en/publications/swan-spectrometry-based-wearable-biosensing-for-monitoring-plasti/]. In addition, in association with folk dancing, I have some experience with textiles and sowing, due to the need for us to maintain or even make some of our performance clothes out of textiles.
+
+As my domain of wearables and pervasive sensing is very close to IoT, I am obliged to say I should have some experience with IoT. However, I think that might be at risk of overestimating my experience. I do have experience with devising usage applications for the devices I have made, but I have not gone deeply into devising these systems themselves.
+
+I believe I have alluded to my expectations throughout this writing, but perhaps to shortly sum them up: I am aim to improve my programming skills, I aim to improve my skills working on hardware and with maker tools, and into devising IoT systems. So I am looking forward to lots of hands-on work and many challenges!
 
 
 ## Task What is IoT
-**Domains and included areas:**
+Domains and included areas:
 - Wearables - my own homefield
 - Smart cities
 - Environmental monitoring
 
-**Commonly used (data) protocols:**
+Commonly used (data) protocols:
 - MQTT - "the most important", lightweight, operating on pub/sub, where clients sub to a topic pub'd by the server
 - WebSocket - I have used this before, but might not be the most suitable for IoT, as requiring a browser is a bit heavy. Ulno here said more about HTTP as the second most common.
 
-**Typical devices (appliance or micro controller):**
+Typical devices (appliance or micro controller):
 - Raspberry Pi
 - M5Stick
 
-**Challenges:**
+Challenges:
 - Improving SEASHELL - how to fit multi-spectral light sensing on a smart-ring form factor?
 - Potential improvements for SWAN? Additional modalities can be one, integrating them together, but this is a bit leaning too much into data processing and analysis. I believe there has to be a more attractive, and concrete, angle for improving SWAN. More thoughts needed.
 
@@ -93,11 +90,13 @@ DISCLAIMER: this teaching material is open - feel free to even teach it yourself
 1. What does IoT entail?
     1. 3 domains: wearables, smart cities, environmental monitoring
     2. 2 commonly used data protocols: 
-        1. MQTT (Message Queue Telemtry Transport) - lightweight, publish/subscrive architecture: brokers make the data available, and clients read the available information after subscribing by accessing the corresponding URL. specifically, the MQTT clients subsribe to a specific topic
+        1. MQTT (Message Queue Telemtry Transport) - lightweight, publish/subscrive architecture: brokers make the data available, and clients read the available information after subscribing by accessing the corresponding URL. specifically, the MQTT clients subscribe to a specific topic
+        2. 
         ![image.png](pictures/mqtt.png)
         
-        2. WebSocket - similar to HTTP protocol, establishes a TCP connection between a browser and a server, allowing them to exchange information until connection is closed. usually very heavy
+        3. WebSocket - similar to HTTP protocol, establishes a TCP connection between a browser and a server, allowing them to exchange information until connection is closed. usually very heavy
         ![image.png](pictures/websocket.png)
+
        [IoT Communication Protocols—IoT Data Protocols - Technical Articles](https://www.allaboutcircuits.com/technical-articles/internet-of-things-communication-protocols-iot-data-protocols/)
     3. 2 typical devices: RPi, M5Stick
     4. what does IoT have to do with coffee
