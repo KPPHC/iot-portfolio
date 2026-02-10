@@ -94,13 +94,13 @@ DISCLAIMER: this teaching material is open - feel free to even teach it yourself
     1. 3 domains: wearables, smart cities, environmental monitoring
     2. 2 commonly used data protocols: 
         1. MQTT (Message Queue Telemtry Transport) - lightweight, publish/subscrive architecture: brokers make the data available, and clients read the available information after subscribing by accessing the corresponding URL. specifically, the MQTT clients subsribe to a specific topic
-        ![image.png](attachment:7c3f9010-e3aa-4db1-bdb9-446b3103028c:image.png)
+        ![image.png](pictures/mqtt.png)
         
         2. WebSocket - similar to HTTP protocol, establishes a TCP connection between a browser and a server, allowing them to exchange information until connection is closed. usually very heavy
-        ![image.png](attachment:0a220a92-44de-44de-9395-c966f4d77227:image.png)
+        ![image.png](pictures/websocket.png)
        [IoT Communication Protocols—IoT Data Protocols - Technical Articles](https://www.allaboutcircuits.com/technical-articles/internet-of-things-communication-protocols-iot-data-protocols/)
     3. 2 typical devices: RPi, M5Stick
-    4. what does IoT have to do with coffee - Ulno drinks 
+    4. what does IoT have to do with coffee
     
     Noone mentioned AI/Big Data.
     IoT is the tech that gives the data to be used in AI. W/o IoT there would be no data (ofcourse apart from language).
