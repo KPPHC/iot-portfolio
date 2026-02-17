@@ -123,7 +123,7 @@ Video TBA
 
 ## Task 8
 The task was to make an LED not toggle just ON/OFF, but also fade between those states smoothly using PWM. For that, we connected an LED from a GPIO pin (D6) through a resistor to GND. We took the Fade example sketch, specified our pin, and just ran it - that caused the fade. We googled that the PWMRANGE is 0 to 1023, so we set the max brightness to 1023. If our fade is set to 5 per cycle, and we have a delay of 30 ms per cycle, then each cycle takes $$2 \cdot \left( \frac{1023}{5} \right) \cdot 30 = 12,276 ms$$
-We confirmed this by recording a video of a full cycle, and indeed, it really is 12 seconds.
+We confirmed this by recording a video of a full cycle, and indeed, it really is 12 seconds. Increasing the fade step amount makes it faster, but more choppy (if the delay stays the same), changing the delay makes the steps more frequent/less frequent.
 
 ![Task8](pictures/1000011301-ezgif.com-crop.gif)
 
