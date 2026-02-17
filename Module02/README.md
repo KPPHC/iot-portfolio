@@ -111,7 +111,7 @@ void loop() {
 ```
 When we press the button, since this is pull-up resistor (INPUT_PULLUP), then buttonState becomes LOW, we enter the if-statement, the ledState is swapped. This allows the LED to be toggled whenever the button is pressed.
 
-VIDEO TBA
+[Task6](pictures/1000011298-ezgif.com-crop.gif)
 
 ## Task 7
 In task 7 we should add a relay, that on the control side is powered by the microcontroller's 5V and a button, and on the load side is powered by 12V into a solenoid lock. For that, we connect from microcontroller 5V to pos-breadboard to relay's 5V (the same with GND). In addition, from pos-breadboard we now connect to a button to the signal port (Fedir told us it is D1, but we don't know where we could have looked up this ourselves, as the datasheets for FL-3FF-S-Z were unhelpful). So now, with everything hooked up, we can click the button and hear a sound from the relay:
@@ -125,7 +125,7 @@ Video TBA
 The task was to make an LED not toggle just ON/OFF, but also fade between those states smoothly using PWM. For that, we connected an LED from a GPIO pin (D6) through a resistor to GND. We took the Fade example sketch, specified our pin, and just ran it - that caused the fade. We googled that the PWMRANGE is 0 to 1023, so we set the max brightness to 1023. If our fade is set to 5 per cycle, and we have a delay of 30 ms per cycle, then each cycle takes $$2 \cdot \left( \frac{1023}{5} \right) \cdot 30 = 12,276 ms$$
 We confirmed this by recording a video of a full cycle, and indeed, it really is 12 seconds.
 
-Video TBA
+[Task8](pictures/1000011301-ezgif.com-crop.gif)
 
 ## Reflection 2
 [Reflection 2](/Reflections/ref02.md)
