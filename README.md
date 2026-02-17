@@ -1,7 +1,7 @@
 # Personal Portfolio for the IoT class at University of Tartu
 Author: Kevin Post
 
-My partner is Reo Kuchida, [portfolio link](https://github.com/kuchidareo/iot-portfolio-template)
+My partner is Leopold Pichonneau, [portfolio link]([https://github.com/kuchidareo/iot-portfolio-template](https://github.com/LeopoldPichonneau/Portfolio))
 
 In my team for the final project, I also had the following members:
 - <replace these pointy brackets with their full name>, [portfolio link](https://github.com/partner/iot-portfolio)
