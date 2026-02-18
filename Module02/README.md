@@ -54,6 +54,7 @@ A picture of our bag:
 ![Bag](pictures/1000011303.jpg)
 
 ## Task 3
+This task was wired up by me and my partner, my partner handled the software.
 In task 3 we are building the "Hello World" of electronic prototyping - making the microcontroller's in-built LED blink, making an LED on a breadboard blink, and then tuning their blinking ordering.
 The very first thing was getting the proper board on the Arduino IDE, which at first I struggled with since I was going a roundabout way (some nonsense cloning a git repo into the Arduino sketches folder). However, the proper way to do this was to go File -> Preferences -> Additional boards managers URLs: https://arduino.esp8266.com/stable/package_esp8266com_index.json. These instructions can be found [here](https://github.com/esp8266/Arduino?tab=readme-ov-file#installing-with-boards-manager).
 
@@ -65,6 +66,7 @@ First just turning on the in-board LED and the standalone LED itself is simple o
 Will add later. Had trouble getting Fritzing, didn't want the others since Fritzing has the breadboard nicely visualized.
 
 ## Task 5
+This task was wired up by me and my partner, my partner handled the software.
 Task 5 calls to blink also the standalone LED. For that, we disconnect the direct connection from pos-breadboard to the LED anode, and instead connect with jumper cable from one of the D-sockets from the microcontroller (in this case we used D6), to the LED cathode. In the blink example sketch, we need to add another digitalWrite. NB! the reason for having LED_BUILTIN and the D6 LED inverted, is because that way they actually are ON/OFF at the same time synchronously - why is it like that? The reason why, is that the builtin LED works like a pull-up resistor (default state is on, and it is turned off):
 ```
 void setup() {
@@ -84,6 +86,7 @@ void loop() {
 
 
 ## Task 6
+This task was wired up by me, me and my partner both worked on the software.
 We can add a button into the circuit, to turn on the LED only when the button is pressed. (NB! this image is using the circuit that is directly in the pos-breadboard, not from the microcontroller socket). However, this one just turns on and off the LED - it does not toggle the LED
 ![Task5-Button](pictures/1000011281.jpg)
 
@@ -114,14 +117,16 @@ When we press the button, since this is pull-up resistor (INPUT_PULLUP), then bu
 ![Task6](pictures/1000011298-ezgif.com-crop.gif)
 
 ## Task 7
+This task was wired by both me and my partner.
 In task 7 we should add a relay, that on the control side is powered by the microcontroller's 5V and a button, and on the load side is powered by 12V into a solenoid lock. For that, we connect from microcontroller 5V to pos-breadboard to relay's 5V (the same with GND). In addition, from pos-breadboard we now connect to a button to the signal port (Fedir told us it is D1, but we don't know where we could have looked up this ourselves, as the datasheets for FL-3FF-S-Z were unhelpful). So now, with everything hooked up, we can click the button and hear a sound from the relay:
 ![Task7-Button](pictures/1000011291.jpg)
 
 However, we now want to connect the solenoid. For that, the image on the workbook was really helpful. What we do, is we take the Y-cable, and from the open positive end connect to relay NO (on the opposite side of the GND/5V). Then we connect the solenoid's GND to the Y-cable open GND, and the solenoid's positive to the COM port (middle of the relay's load). Then, when we click the button, the solenoid lock should toggle. An issue we encountered, was that we were using a 12V but 1.0A adapter, which was not enough to toggle the solenoid - when we borrowed one with a higher current from our neighbour, then it worked properly.
 
-Video TBA
+![Task7-Solenoid](pictures/ezgif-5d1af954c3b622d8.gif)
 
 ## Task 8
+This task was wired by both me and my partner, and my partner handled the software, I did the calculations.
 The task was to make an LED not toggle just ON/OFF, but also fade between those states smoothly using PWM. For that, we connected an LED from a GPIO pin (D6) through a resistor to GND. We took the Fade example sketch, specified our pin, and just ran it - that caused the fade. We googled that the PWMRANGE is 0 to 1023, so we set the max brightness to 1023. If our fade is set to 5 per cycle, and we have a delay of 30 ms per cycle, then each cycle takes $$2 \cdot \left( \frac{1023}{5} \right) \cdot 30 = 12,276 ms$$
 We confirmed this by recording a video of a full cycle, and indeed, it really is 12 seconds. Increasing the fade step amount makes it faster, but more choppy (if the delay stays the same), changing the delay makes the steps more frequent/less frequent.
 
