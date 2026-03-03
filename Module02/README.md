@@ -138,11 +138,15 @@ Which buses are used in the collected hardware? How can they be wired to the Wem
 dallas temperature sensor (DS1820B) - https://randomnerdtutorials.com/guide-for-ds18b20-temperature-sensor-with-arduino/
 picture of the software and the wiring
 
+**The bus** - one-wire bus
+
 Dht22 - [https://lastminuteengineers.com/dht11-dht22-arduino-tutorial/](https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-sensor-arduino-ide/)
 we had the issue where we put the 5V, but it needed 3v3 voltage.
-why didn't it work with 5V? Is it cause the resistor was 270 ohms, instead of the recommended 10k?
+why didn't it work with 5V? Is it cause the resistor was 270 ohms, instead of the recommended 10k? The resistor really was the issue.
+**The bus** - uses some proprietary DHT single-bus
 
 Mpr121 TOUCH sensor - we did hook it up, but had trouble getting the readings
+
 
 gesture sensor https://randomnerdtutorials.com/esp8266-nodemcu-apds9960-sensor-arduino/
 rfid reader (+tags) https://randomnerdtutorials.com/esp32-mfrc522-rfid-reader-arduino/
