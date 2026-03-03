@@ -40,5 +40,34 @@ It's modules are standardized, meaning it is stable, well-tested, and should be 
 It touts it's security, is kept up-to-date.
 Open-source, community support
 
+# MQTT protocol
+So basically, what it consists of is clients and brokers. Clients publish to a broker on the topic, and the broker distributes to whatever clients have subscribed to the topic. An example of pub-sub is Slack: a topic would be the Delta Centre, then subtopic are the specific channels inside there (could also have sub-subgroups).
+
+How hard it is to create a topic? Not really that difficult.
+
+# Workbook - https://docs.google.com/document/d/1412jrNT1CTWUsnEwqp1IGEA6AjrsfRwe06ogvfTVqWU/edit?tab=t.h5nxjadzs77g#heading=h.x73np36g16zd
+
+# Do you wanna play a game? MQTT to the rescue
+**Scenario** - In many countries many need help. Infrastructure is damaged. In Langtang, a volunteer rescue team is set up for first-aid administration. They knew that communication could help save lives in time-critical situations, such as getting essential supplies to where they were needed and calling in personnel (doctors and nurses) to attend to an emergency. 
+**Equipment** - A mango, and one Ethernet cable with internet access (allowed to DL applications and dependencies)
+**Task** - Deploy a DIY LAN for the First-Aid Station. It has to work locally and be stand-alone. Your team should set up a Local Area Network (LAN) with a Wi-Fi access point and an MQTT broker to establish a simple communication system within the station. You must accomplish this using the router.
+
+
+Crocodile
+Got 
+Our routers IP: http://192.168.1.1/
+Router 14 password: network123
+made the lan gateway to be 192.168.14.1
+made the wifi SSID IOT14, -PSK, and the password iotempire
+then we connected to the large gateway, connected via wifi to the router luci,
+downloaded dependencies: mosquitto-ssl, luci-app-mosquitto, luci-app-commands
+in system - custom commands, we made running services that makes the commant netstat -tulpn
+when we ran that, we saw 0.0.0.0.0:1883, LISTENING at 3930/mosquitto (PID/mosquitto)
+
+we subscribed to topics Crocodile/mqtt/#. On one phone we published a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshot below.
+
+# Extra optional task
+kmod-usb-net-rndis
+
 ## Reflection 3
 [Reflection 3](/Reflections/ref03.md)
