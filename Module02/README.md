@@ -133,7 +133,7 @@ We confirmed this by recording a video of a full cycle, and indeed, it really is
 ![Task8](pictures/1000011301-ezgif.com-crop.gif)
 
 ## Task 9
-This task was to read a little about the sensors from the IoT cart:
+This task was to read a little about the sensors from the IoT cart. This task was documented by my partner on: [https://github.com/LeopoldPichonneau/Portfolio/tree/main/Module02](https://github.com/LeopoldPichonneau/Portfolio/tree/main/Module02)
 Which buses are used in the collected hardware? How can they be wired to the Wemos D1 Mini?
 dallas temperature sensor (DS1820B) - https://randomnerdtutorials.com/guide-for-ds18b20-temperature-sensor-with-arduino/
 picture of the software and the wiring
