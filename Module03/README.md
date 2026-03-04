@@ -13,27 +13,30 @@ Much cooperation b/w artists and scientists.
 
 ## Renato
 # Intranet vs Internet vs LAN vs WAN
-Intranet - is a very classic system, and the hint is in the name. It is a net of computers, that is happening inside (intra) some organization/institute. An addition to this is _extranet_, that allows partners and customers to also interface with this. The difference from internet is that intranet/extranet is high security access.
-Internet - so now, the network is between these organization.
-LAN - local area network
-WAN - widely accessed network
 
-# Mango router - [https://www.geeksforgeeks.org/computer-networks/network-devices-hub-repeater-bridge-switch-router-gateways/](https://www.geeksforgeeks.org/computer-networks/network-devices-hub-repeater-bridge-switch-router-gateways/)
+
+# [Common communication hardware and terminology](https://www.geeksforgeeks.org/computer-networks/network-devices-hub-repeater-bridge-switch-router-gateways/)
+**Intranet** - is a very classic system, and the hint is in the name. It is a net of computers, that is happening inside (intra) some organization/institute. An addition to this is _extranet_, that allows partners and customers to also interface with this. The difference from internet is that intranet/extranet is high security access.
+**Internet** - so now, the network is between these organization.
+**LAN** - local area network
+**WAN** - widely accessed network
 **Router** - Connects multiple networks (your home LAN to the internet WAN), using IP addresses to determine the best path for data packets to travel, maintaining a Routing table. Routers stop broadcast traffic, isolating networks from each other.
 **Switch** - connects devices in a LAN. Unlike a hub, a Switch learns MAC address of every connected device and sends data only to the specific port where the destination device is connected
 **Bridge** - connects two separate LAN segments to make them appear as one. Filters traffic based on MAC addresses to keep local traffic local, reducing congestion. Largely replaced by Switches (which are essentially multi-port bridges).
 **Access Point** - creates a WLAN, acting as a bridge b/w wired Ethernet and wireless WiFi. It only provides WiFi signal, but does not route traffic or assigne IP Addresses (unless it is a "wireless router")
-**DNSmasq**
+**DNSmasq** - domain name service, meaning it gives the IP addresses a human readable name (instead of 8.8.8.8 we have google.com)
 **DHCP** - a system that assigns IP addresses. we talked about localhost (196.168.xx.xx). The ports at the end are given as a lease. The way to recognize a previous device is the MAC address, those are unique and permanent for each device.
 **Server**
 **ISP**
 **Modem**
 
-So now returning to the mango:
+2.4 GHz vs 5 GHz - these are different bands that are used. each person is given rental / limited access to a specific wavelength of the band (channel). All the communication is happening within that wavelength - if it is crowded, then may cause noise and issues. The channels are numbered. In Estonia 14 is illegal to use and is reserved for military.
+
+We are using a Mango pocket router.
 
 How many clients it can handle? - stable up to 5
 
-Frequencies that the mango can do? - 2.4GHz
+Frequencies that the Mango can do? - 2.4GHz
 
 What OS? - OpenWRT, based on Linux
 
@@ -45,8 +48,8 @@ Open-source, community support
 
 # MQTT protocol
 So basically, what it consists of is clients and brokers. Clients publish to a broker on the topic, and the broker distributes to whatever clients have subscribed to the topic. An example of pub-sub is Slack: a topic would be the Delta Centre, then subtopic are the specific channels inside there (could also have sub-subgroups).
-
 How hard it is to create a topic? Not really that difficult.
+Wildcard (this symbol #) is used to signify that you want to subscribe into any topic within that hierarchy: e.g. instructions/#
 
 # Workbook - https://docs.google.com/document/d/1412jrNT1CTWUsnEwqp1IGEA6AjrsfRwe06ogvfTVqWU/edit?tab=t.h5nxjadzs77g#heading=h.x73np36g16zd
 
