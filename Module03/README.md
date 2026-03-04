@@ -29,10 +29,13 @@ WAN - widely accessed network
 **ISP**
 **Modem**
 
-So now returning to the mango, what is here.
-How many clients it can handle - stable up to 5
-Frequencies that the mango can do - 2.4GHz
-OS - OpenWRT, based on Linux
+So now returning to the mango:
+
+How many clients it can handle? - stable up to 5
+
+Frequencies that the mango can do? - 2.4GHz
+
+What OS? - OpenWRT, based on Linux
 
 # OpenWrt
 Embedded Linux
@@ -53,18 +56,29 @@ How hard it is to create a topic? Not really that difficult.
 **Task** - Deploy a DIY LAN for the First-Aid Station. It has to work locally and be stand-alone. Your team should set up a Local Area Network (LAN) with a Wi-Fi access point and an MQTT broker to establish a simple communication system within the station. You must accomplish this using the router.
 
 
-Crocodile
-Got 
-Our routers IP: http://192.168.1.1/
-Router 14 password: network123
-made the lan gateway to be 192.168.14.1
-made the wifi SSID IOT14, -PSK, and the password iotempire
-then we connected to the large gateway, connected via wifi to the router luci,
-downloaded dependencies: mosquitto-ssl, luci-app-mosquitto, luci-app-commands
-in system - custom commands, we made running services that makes the commant netstat -tulpn
-when we ran that, we saw 0.0.0.0.0:1883, LISTENING at 3930/mosquitto (PID/mosquitto)
-
-we subscribed to topics Crocodile/mqtt/#. On one phone we published a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshot below.
+**Team name:** Crocodile
+**Mango number:** 14
+**Mango LUCI username:** root
+**Mango LUCI passowrd:** network123
+**Mango SSID:** IOT14
+**Mango WiFi password:** iotempire
+1) For the class purposes, we downloaded MyMQTT application on our phones. We connected our phones to MARIA NETWORK, with the password _iotempire_. Once connected, we connected to a the broker 192.168.14.1, and subscribed to topics _instructions/#_, which meant we got all next instructions from there as published by the instructor.
+2) We connected our router to the power socket and via ethernet (LAN) to one of the laptops. We figured out the routers IP (in cmd ipconfig for Windows). Our routers IP: 192.168.1.1.
+3) In the MyMQTT application, for the class purposes we also published our team name by writing to _phase1/verification/Crocodile_ with the message of the routers original IP address 
+4) Using the IP written into a browser, we connected with LUCI (the router's interface), navigated to Interfaces, and there changed the LAN IP to be the same as the gateway's IP (192.168.14.1). Save & Apply (unchecked!). Disconnect and Reconnect the ethernet cable.
+5) Using the new IP, we now re-entered into the LUCI. Successfully entering confirmed the IP address change
+6) We now setup the Mango as a WiFi accesspoint. We first scanned using Channel Analyzer to find out what channels are not crowded (we decided on channel 9) - NB! Channel 14 is reserved for the military in Estonia.
+7) Secondly, we navigated again to interfaces, and setup the WiFi. Set the channel to 9, SSID IOT14, and security to WPA2-PSK with the password _iotempire_.
+8) We now disconnected the ethernet cable from our laptop, and connected our router with the ethernet cable (WAN) to a switch to download dependencies.
+9) We connected our laptop with the router over WiFi (IOT14).
+10) We checked the connection by writing into cmd _ping openwrt.org_
+11) We re-opened LUCI, and navigated to the Software menu, and updated the list of packages available.
+12) We found and installed each of the following packages: mosquitto-ssl,  luci-app-mosquitto and luci-app-commands
+13) We went into Services -> Mosquitto and configured the Mosquitto broker: a) check the box for use this LuCI configuration; b) enable Allow anonymous connections; c) add a Listener with Port 1883 and under it's protocol set to MQTT
+14) We navigated Services -> Custom Commands, and created a command that runs _netstat -tulpn_. Save the command
+15) We navigated back to the Dashboard, ran the created command, and confirmed the PID of the mosquitto process to confirm it is running (we saw 0.0.0.0.0:1883, LISTENING at 3930/mosquitto (PID/mosquitto)).
+16) To test whether it is working, we disconnected our phones from MARIA NETWORK, and connected to our own IOT14 WiFi.
+17) One of the phones subscribed to topic Crocodile/mqtt/#, and the other published a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshots below.
 
 # Extra optional task
 kmod-usb-net-rndis
