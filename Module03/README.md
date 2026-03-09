@@ -84,7 +84,9 @@ Wildcard (this symbol #) is used to signify that you want to subscribe into any 
 17) One of the phones subscribed to topic Crocodile/mqtt/#, and the other published a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshots below.
 
 # Extra optional task
-kmod-usb-net-rndis
+1) We first installed the dependency: **kmod-usb-net-rndis**
+2) We created new interface **usb0**, the device **eth1** chose the firewall **wan wan6**
+3) It works when we pinged openwrt.org, even after removing the connection to our switch.
 
 ## Reflection 3
 [Reflection 3](/Reflections/ref03.md)
