@@ -6,7 +6,7 @@
   and
   simple_esp8266 from MQTTT
 
-  An esp8266 is connected to a button via GND and D5
+  An esp8266 is connected to a button via GND and D2
   It publishes to 192.168.14.1 on IOT14 wifi whenever the button is pressed via MQTT
 */
 
