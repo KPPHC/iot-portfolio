@@ -18,7 +18,7 @@ My personal profile and expectations, you can find [here](Module01/README.md#tas
 - [Module 2: Hardware and Basic Electronics](Module02/README.md),
   [Reflection 2](Reflections/ref02.md)
 - [Module 3: Infrastructure and IoT Gateway Setup](Module03/README.md),
-  [Reflection 3](Reflections/ref03.md)
+  [Reflection 3](Reflections/ref03.md), [Reflection 3b - Week 2](Reflections/ref03b.md)
 - ...
 
 ## Miscellanious
