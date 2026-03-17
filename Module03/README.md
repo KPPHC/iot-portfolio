@@ -83,6 +83,7 @@ Wildcard (this symbol #) is used to signify that you want to subscribe into any 
 16) To test whether it is working, we disconnected our phones from MARIA NETWORK, and connected to our own IOT14 WiFi.
 17) One of the phones subscribed to topic Crocodile/mqtt/#, and the other published a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshots below.
 
+
 # Extra optional task
 1) We first installed the dependency: **kmod-usb-net-rndis**
 2) We created new interface **usb0**, the device **eth1** chose the firewall **wan wan6**
