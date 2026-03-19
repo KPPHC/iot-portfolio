@@ -76,12 +76,25 @@ Wildcard (this symbol #) is used to signify that you want to subscribe into any 
 9) We connected our laptop with the router over WiFi (IOT14).
 10) We checked the connection by writing into cmd _ping openwrt.org_
 11) We re-opened LUCI, and navigated to the Software menu, and updated the list of packages available.
-12) We found and installed each of the following packages: mosquitto-ssl,  luci-app-mosquitto and luci-app-commands
-13) We went into Services -> Mosquitto and configured the Mosquitto broker: a) check the box for use this LuCI configuration; b) enable Allow anonymous connections; c) add a Listener with Port 1883 and under it's protocol set to MQTT
-14) We navigated Services -> Custom Commands, and created a command that runs _netstat -tulpn_. Save the command
-15) We navigated back to the Dashboard, ran the created command, and confirmed the PID of the mosquitto process to confirm it is running (we saw 0.0.0.0.0:1883, LISTENING at 3930/mosquitto (PID/mosquitto)).
-16) To test whether it is working, we disconnected our phones from MARIA NETWORK, and connected to our own IOT14 WiFi.
-17) One of the phones subscribed to topic Crocodile/mqtt/#, and the other published a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshots below.
+12) We found and installed each of the following packages:
+'''
+mosquitto-ssl
+luci-app-mosquitto
+luci-app-commands
+'''
+For my specific setup, I need to instead SSH into the Mango, and then run the installation commands inside the router:
+'''
+ssh root@192.168.14.1
+opkg update
+opkg install mosquitto-ssl luci-app-mosquitto luci-app-commands
+'''
+And after that, I can return to LUCI
+
+14) We went into Services -> Mosquitto and configured the Mosquitto broker: a) check the box for use this LuCI configuration; b) enable Allow anonymous connections; c) add a Listener with Port 1883 and under it's protocol set to MQTT
+15) We navigated Services -> Custom Commands, and created a command that runs _netstat -tulpn_. Save the command
+16) We navigated back to the Dashboard, ran the created command, and confirmed the PID of the mosquitto process to confirm it is running (we saw 0.0.0.0.0:1883, LISTENING at 3930/mosquitto (PID/mosquitto)).
+17) To test whether it is working, we disconnected our phones from MARIA NETWORK, and connected to our own IOT14 WiFi.
+18) One of the phones subscribed to topic Crocodile/mqtt/#, and the other published a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshots below.
 
 
 # Extra optional task
