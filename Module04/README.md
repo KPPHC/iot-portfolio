@@ -245,7 +245,29 @@ When commenting out the delay(1000); inside the ISR, then it stopped crashing. I
 
 
 ## Task 5
-Getting PlatformIO to work through WSL generally is rather feeble. However, it is possible. For that, you need to make USB forwarding, and for OverTheAir, you need to mirror the IP address to WSL.
+Getting PlatformIO to work through WSL generally is rather feeble. However, it is possible. For that, you need to make sure you change the filepath separator, create USB forwarding, and for mirror the IP address to WSL for OTA.
+
+### Assumptions
+This tutorial assumes you have installed WSL, VSCode, and are running VSCode through WSL by using:
+```
+code .
+```
+at your project directory.
+
+
+### Changing the separator
+You should use PlatformIO to make a new project. But, most likely, once you make the project, you will not be able to see it even if you navigate to PIO Home -> Project & Configurations. This is bad, because you cannot add dependencies to your project, since PlatformIO won't be able to find them inside VSCode.
+
+This can be due to collision between Windows and Linux pathing symbols. Both use different characters in paths.
+There are two possible things you can do, to make sure this is working correctly:
+1. In VSCode Extensions check, that PlatformIO IDE is installed under WSL: <DISTRO> - INSTALLED, but NOT under LOCAL - INSTALLED. IF it is under LOCAL - INSTALLED, then Uninstall it from there, and install it on WSL: UBUNTU - INSTALLED.
+2. Modify the separator inside ~/.platformio/packages/contrib-piohome/main.min.js.
+```
+cd ~/.platformio/packages/contrib-piohome
+cp main.min.js main.min.js.bak #backup just incase
+sed -i 's/"\\":"\/"/"\/":"\/"/g' main.min.js
+```
+Now you should be able to add your dependencies to your project.
 
 ### Forwarding the USB
 First, you need to get WSL USB manager ([GitHub repo](https://github.com/nickbeth/wsl-usb-manager)), and forward the port to your WSL. To check whether it works you can run in WSL:
