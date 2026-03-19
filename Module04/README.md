@@ -242,3 +242,91 @@ OOM broken prints:
 
 When commenting out the delay(1000); inside the ISR, then it stopped crashing. In the lecture it was mentioned, that ISRs are really short. The reason from [Arduino docs](https://docs.arduino.cc/language-reference/en/functions/external-interrupts/attachInterrupt/):
 "Generally, an ISR should be as short and fast as possible. If your sketch uses multiple ISRs, only one can run at a time; Other interrupts will be executed after the current one finishes, in an order that depends on their priority. millis() relies on interrupts to count, so it will never increment inside an ISR. Since delay() requires interrupts to work, it will not function if called inside an ISR. micros() works initially but starts behaving erratically after 1-2 ms. delayMicroseconds() does not use a counter, so it will work as usual."
+
+
+## Task 5
+Getting PlatformIO to work through WSL generally is rather feeble. However, it is possible. For that, you need to make USB forwarding, and for OverTheAir, you need to mirror the IP address to WSL.
+
+### Forwarding the USB
+First, you need to get WSL USB manager (look for a GitHub repo), and forward the port to your WSL. To check whether it works you can run in WSL:
+```
+lsusb
+dmesg | grep tty
+```
+And you should see something like: 
+```
+_Bus 001 Device 003: ID 1a86:7523 QinHeng Electronics CH340 serial converter_
+[  205.315951] usb 1-1: ch341-uart converter now attached to ttyUSB0
+```
+Ideally, VSCode PlatformIO should pick up that port automatically, but you can also specify it via _upload_port_ and _monitor_port_ in the _platformio.ini_
+```
+[env:d1_mini]
+platform = espressif8266
+board = d1_mini
+framework = arduino
+
+upload_port = /dev/ttyUSB0
+
+monitor_port = /dev/ttyUSB0
+monitor_speed = 115200
+```
+If you can Upload from VSCode, then the USB forwarding should be working properly.
+
+### Making the OTA
+#### 1. Setting up WSL mirroring config
+In PowerShell:
+```
+notepad %USERPROFILE%\.wslconfig
+```
+And make a new file if it prompts you to make. Then copy inside the following:
+```
+[wsl2]
+networkingMode=mirrored
+```
+After that restart your PC.
+
+```
+hostname -I
+```
+And you should see something here:
+```
+192.168.14.138 172.18.0.1 172.17.0.1 fd39:f229:307c::a59 fd39:f229:307c:0:de93:2887:9e3a:c42b fd39:f229:307c:0:cdcc:e233:9d40:7425
+```
+Where the 192.168.14.138 for my case was the IP address of my Windows. Seeing this in WSL, this confirms that mirroring is successful.
+
+
+#### 2. Verify the upload_port
+Use the [ESP8266 example provided](https://raw.githubusercontent.com/esp8266/Arduino/refs/heads/master/libraries/ArduinoOTA/examples/BasicOTA/BasicOTA.ino)
+And flash it on via USB port to check what is the IP address of the MCU in the WiFi subnet.
+The IP address will be printed in the Serial Monitor - for me it was 192.168.14.182.
+Add it to _platformio.ini_:
+```
+upload_port = 192.168.14.182
+```
+
+
+#### 3. Making the firewall exceptions
+In PowerShell you have to make a windows firewall exception.
+```
+New-NetFirewallRule -DisplayName "PlatformIO_OTA_Static" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8266
+```
+
+
+#### 4. Making sure the ports are reachable
+And in _platformio.ini_:
+```
+upload_flags = 
+    --auth=iotempower
+    --host_ip=192.168.14.138
+    --host_port=8266
+```
+
+#### 5. Running the upload
+Unfortunately, this still only works via PlatformIO CLI, not through the VSCode IDE extension. But you should be able to run with this command on WSL:
+```
+pio run -e d1_mini_ota -t upload
+```
+
+
+
+
