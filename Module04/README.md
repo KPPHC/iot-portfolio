@@ -248,7 +248,7 @@ When commenting out the delay(1000); inside the ISR, then it stopped crashing. I
 Getting PlatformIO to work through WSL generally is rather feeble. However, it is possible. For that, you need to make USB forwarding, and for OverTheAir, you need to mirror the IP address to WSL.
 
 ### Forwarding the USB
-First, you need to get WSL USB manager (look for a GitHub repo), and forward the port to your WSL. To check whether it works you can run in WSL:
+First, you need to get WSL USB manager ([GitHub repo](https://github.com/nickbeth/wsl-usb-manager)), and forward the port to your WSL. To check whether it works you can run in WSL:
 ```
 lsusb
 dmesg | grep tty
