@@ -1,26 +1,28 @@
 # Module 4
 ## Crashes
 1) nullpointer dereference
+´´´
 char* super_message;
+´´´
 
-2) memory issues
+3) memory issues
 memory leak:
-'''
+´´´
 char* msg = new char[512]
-'''
+´´´
 we allocate some variables, but dont delete. so if we have a function 
 
 memory fragmentation: memory keeps growing and reallocating, heap becomes "many small holes", so big allocations fail
-'''
+´´´
 static String extend_msg;
 extend_msg += msg;
-'''
+´´´
 At the beginning we had 100 bytes allocated, but as we extend, then this 100 bytes is released, and a larger memory is still given. This problem is unclear for me. How can
 
 For debugging you can use memory prints:
-'''
+´´´
 Serial.println(ESP.getFreeHeap());
-'''
+´´´
 
 3) interrupts
 ISR - Interrupt Service Routine
@@ -30,9 +32,9 @@ should be in a very short time (seconds)
 ## Buses
 1) PWM for smooth flashing
 PWM is for a modulated output
-'''
+´´´
 analogWrite(ledPin, brigthness);
-'''
+´´´
 Brightness depends on the duty cycle (the percentage of time it's on).
 
 2) UART communication (Universal Asynchronous Receiver-Transmitter)
@@ -48,7 +50,7 @@ On ESP32, there is two kinds of UART:
 
 # Task1
 Broken code prints
-'''
+´´´
 11:12:55.300 -> 3fffffc0:  feefeffe feefeffe 3fffdab0 40100d95  
 11:12:55.300 -> <<<stack<<<
 11:12:55.300 -> 
@@ -73,20 +75,20 @@ Broken code prints
 11:12:59.754 -> 192.168.14.182
 11:12:59.754 -> Attempting MQTT connection...connected
 11:12:59.754 -> Publish message: hello world #1
-'''
+´´´
 
 Fixed code prints
-'''
+´´´
 11:20:10.452 -> Publish message: hello world #8
 11:20:11.095 -> Something special coming up...
 11:20:11.138 -> The following:A
 11:20:11.138 -> Message arrived [inTopic] test
 11:20:12.419 -> Publish message: hello world #9
-'''
+´´´
 
 ## Task 2
 Broken code prints
-'''
+´´´
 11:24:22.760 -> >>>stack>>>
 11:24:22.760 -> 
 11:24:22.760 -> ctx: cont
@@ -116,20 +118,20 @@ Broken code prints
 11:24:27.230 -> 192.168.14.182
 11:24:27.230 -> Attempting MQTT connection...connected
 11:24:27.230 -> Publish message: hello world #9 - division 111
-'''
+´´´
 
 
 Fixed code prints
-'''
+´´´
 11:30:56.436 -> Publish message: hello world #1 - division 1000
 11:30:58.406 -> Warning: Attempted division by zero avoided!
 11:30:58.406 -> Publish message: hello world #0 - division UNDEFINED
 11:31:00.435 -> Publish message: hello world #-1 - division -1000
-'''
+´´´
 
 ## Task 3
 Broken code prints
-'''
+´´´
 11:48:56.425 -> Publish message: hello world #74
 11:49:01.575 -> 
 11:49:01.575 -> User exception (panic/abort/assert)
@@ -174,10 +176,10 @@ Broken code prints
 11:49:06.076 -> 192.168.14.182
 11:49:06.076 -> Attempting MQTT connection...connected
 11:49:06.124 -> Publish message: hello world #1
-'''
+´´´
 
 OOM broken prints:
-'''
+´´´
 11:46:54.062 -> Publish message: hello world #93
 11:46:59.583 -> Publish message: hello world #94
 11:47:04.618 -> 
@@ -226,17 +228,17 @@ OOM broken prints:
 11:47:09.373 -> Publish message: hello world #2
 11:47:09.579 -> Publish message: hello world #3
 11:47:09.774 -> Publish message: hello world #4
-'''
+´´´
 
 
 ## Task 4
-'''
+´´´
 12:41:45.483 -> Hello, I am alive and counting: 317
 12:41:45.593 -> Hello, I am alive and counting: 318
 12:41:45.593 -> Interrupt occurred!
 12:41:45.701 -> Hello, I am alive and counting: 319
 12:41:45.772 -> Hello, I am alive and counting: 320
-'''
+´´´
 
 When commenting out the delay(1000); inside the ISR, then it stopped crashing. In the lecture it was mentioned, that ISRs are really short. The reason from [Arduino docs](https://docs.arduino.cc/language-reference/en/functions/external-interrupts/attachInterrupt/):
 "Generally, an ISR should be as short and fast as possible. If your sketch uses multiple ISRs, only one can run at a time; Other interrupts will be executed after the current one finishes, in an order that depends on their priority. millis() relies on interrupts to count, so it will never increment inside an ISR. Since delay() requires interrupts to work, it will not function if called inside an ISR. micros() works initially but starts behaving erratically after 1-2 ms. delayMicroseconds() does not use a counter, so it will work as usual."
