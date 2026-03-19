@@ -12,10 +12,10 @@ Another problem is that fire causes ash to get into the water. -- pH sensors (as
 Much cooperation b/w artists and scientists.
 
 ## Renato
-# Intranet vs Internet vs LAN vs WAN
+### Intranet vs Internet vs LAN vs WAN
 
 
-# [Common communication hardware and terminology](https://www.geeksforgeeks.org/computer-networks/network-devices-hub-repeater-bridge-switch-router-gateways/)
+### [Common communication hardware and terminology](https://www.geeksforgeeks.org/computer-networks/network-devices-hub-repeater-bridge-switch-router-gateways/)
 **Intranet** - is a very classic system, and the hint is in the name. It is a net of computers, that is happening inside (intra) some organization/institute. An addition to this is _extranet_, that allows partners and customers to also interface with this. The difference from internet is that intranet/extranet is high security access.
 **Internet** - so now, the network is between these organization.
 **LAN** - local area network
@@ -40,67 +40,101 @@ Frequencies that the Mango can do? - 2.4GHz
 
 What OS? - OpenWRT, based on Linux
 
-# OpenWrt
+### OpenWrt
 Embedded Linux
 It's modules are standardized, meaning it is stable, well-tested, and should be compatible with even old equipment.
 It touts it's security, is kept up-to-date.
 Open-source, community support
 
-# MQTT protocol
+### MQTT protocol
 So basically, what it consists of is clients and brokers. Clients publish to a broker on the topic, and the broker distributes to whatever clients have subscribed to the topic. An example of pub-sub is Slack: a topic would be the Delta Centre, then subtopic are the specific channels inside there (could also have sub-subgroups).
 How hard it is to create a topic? Not really that difficult.
 Wildcard (this symbol #) is used to signify that you want to subscribe into any topic within that hierarchy: e.g. instructions/#
 
-# Workbook - https://docs.google.com/document/d/1412jrNT1CTWUsnEwqp1IGEA6AjrsfRwe06ogvfTVqWU/edit?tab=t.h5nxjadzs77g#heading=h.x73np36g16zd
+### Workbook - https://docs.google.com/document/d/1412jrNT1CTWUsnEwqp1IGEA6AjrsfRwe06ogvfTVqWU/edit?tab=t.h5nxjadzs77g#heading=h.x73np36g16zd
 
-# Do you wanna play a game? MQTT to the rescue
+## Do you wanna play a game? MQTT to the rescue
 **Scenario** - In many countries many need help. Infrastructure is damaged. In Langtang, a volunteer rescue team is set up for first-aid administration. They knew that communication could help save lives in time-critical situations, such as getting essential supplies to where they were needed and calling in personnel (doctors and nurses) to attend to an emergency. 
 **Equipment** - A mango, and one Ethernet cable with internet access (allowed to DL applications and dependencies)
 **Task** - Deploy a DIY LAN for the First-Aid Station. It has to work locally and be stand-alone. Your team should set up a Local Area Network (LAN) with a Wi-Fi access point and an MQTT broker to establish a simple communication system within the station. You must accomplish this using the router.
 
-
+### Stats
 **Team name:** Crocodile
 **Mango number:** 14
 **Mango LUCI username:** root
 **Mango LUCI passowrd:** network123
 **Mango SSID:** IOT14
 **Mango WiFi password:** iotempire
-1) For the class purposes, we downloaded MyMQTT application on our phones. We connected our phones to MARIA NETWORK, with the password _iotempire_. Once connected, we connected to a the broker 192.168.14.1, and subscribed to topics _instructions/#_, which meant we got all next instructions from there as published by the instructor.
-2) We connected our router to the power socket and via ethernet (LAN) to one of the laptops. We figured out the routers IP (in cmd ipconfig for Windows). Our routers IP: 192.168.1.1.
-3) In the MyMQTT application, for the class purposes we also published our team name by writing to _phase1/verification/Crocodile_ with the message of the routers original IP address 
-4) Using the IP written into a browser, we connected with LUCI (the router's interface), navigated to Interfaces, and there changed the LAN IP to be the same as the gateway's IP (192.168.14.1). Save & Apply (unchecked!). Disconnect and Reconnect the ethernet cable.
-5) Using the new IP, we now re-entered into the LUCI. Successfully entering confirmed the IP address change
-6) We now setup the Mango as a WiFi accesspoint. We first scanned using Channel Analyzer to find out what channels are not crowded (we decided on channel 9) - NB! Channel 14 is reserved for the military in Estonia.
-7) Secondly, we navigated again to interfaces, and setup the WiFi. Set the channel to 9, SSID IOT14, and security to WPA2-PSK with the password _iotempire_.
-8) We now disconnected the ethernet cable from our laptop, and connected our router with the ethernet cable (WAN) to a switch to download dependencies.
-9) We connected our laptop with the router over WiFi (IOT14).
-10) We checked the connection by writing into cmd _ping openwrt.org_
-11) We re-opened LUCI, and navigated to the Software menu, and updated the list of packages available.
-12) We found and installed each of the following packages:
-'''
-mosquitto-ssl
-luci-app-mosquitto
-luci-app-commands
-'''
-For my specific setup, I need to instead SSH into the Mango, and then run the installation commands inside the router:
-'''
+ 
+### 1. Initial Connection & Subscribing to Instructions
+1) For the class purposes, download MyMQTT application on your phones.
+2) Connected our phones to MARIA NETWORK, with the password _iotempire_.
+3) Once connected, connect to the broker 192.168.14.1, and subscribe to topics _instructions/#_, which means you get all next instructions from there as published by the instructor.
+
+### 2. Accessing the Router Interface
+1) Connected the router to the power socket and via ethernet (LAN) to one of the laptops.
+2) Figure out the routers IP (in cmd ipconfig for Windows). Our routers IP: 192.168.1.1.
+3) In the MyMQTT application, for the class purposes, publish our team name by writing to _phase1/verification/Crocodile_ with the message of the routers original IP address
+
+### 3. Network & Gateway Configuration
+1) Using the IP written into a browser, connect with LUCI (the router's interface). User by default is _root_ and password is left empty.
+2) Navigate to Interfaces, and there change the LAN IP to be the same as the gateway's IP (192.168.14.1). Save & Apply (unchecked!).
+3) Refresh the page
+4) Using the new IP, now re-enter into the LUCI. Successfully entering confirms the IP address change.
+
+### 4. WiFi Access Point Setup
+1) Scan channels using Channel Analyzer to find out what channels are not crowded (we decided on channel 9) - NB! Channel 14 is reserved for the military in Estonia.
+2) Navigate Network -> Wireless to setup the WiFi.
+3) Create a new wireless interface (or edit existing).
+4) Set the channel to 9, SSID IOT14, and security to WPA2-PSK with the password _iotempire_.
+5) Save unchecked.
+6) Connect laptop to the newly configured IOT14 wifi.
+
+### 5. Installing Dependencies
+1) Disconnect the ethernet cable from our laptop, and connected router with the ethernet cable (WAN) to a switch with internet access to download dependencies.
+2) To check internet connection, navigate Network -> Diagnostics, and try IpV4 Ping with _openwrt.org_
+3) **Installing dependencies via SSH:**
+This can be done also within LUCI under System -> Software, however my specific system runs into _SyntaxError: Unexpected end of JSON input_. I have not figured out the cause for this as of yet, however, SSH-ing is a valid workaround.
+```
 ssh root@192.168.14.1
 opkg update
 opkg install mosquitto-ssl luci-app-mosquitto luci-app-commands
-'''
-And after that, I can return to LUCI
+```
+And after that, you can return to LUCI.
 
-14) We went into Services -> Mosquitto and configured the Mosquitto broker: a) check the box for use this LuCI configuration; b) enable Allow anonymous connections; c) add a Listener with Port 1883 and under it's protocol set to MQTT
-15) We navigated Services -> Custom Commands, and created a command that runs _netstat -tulpn_. Save the command
-16) We navigated back to the Dashboard, ran the created command, and confirmed the PID of the mosquitto process to confirm it is running (we saw 0.0.0.0.0:1883, LISTENING at 3930/mosquitto (PID/mosquitto)).
-17) To test whether it is working, we disconnected our phones from MARIA NETWORK, and connected to our own IOT14 WiFi.
-18) One of the phones subscribed to topic Crocodile/mqtt/#, and the other published a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshots below.
+
+### 6. Configuring the Mosquitto Broker
+1) Navigate Services -> Mosquitto. NB! If you don't see the Services tab, then make sure to exit and re-enter LUCI
+2) **OpenWRT:** Check the box for _Use this LuCI configuration page_
+3) **Mosquitto:** Find _Allow anonymous connections_ and select _Enabled_ from drop-down menu
+4) **Listeners:** _Add_ a listener, set _Port_ to _1883_ and _Protocol to use when listening_ to _MQTT_.
+
+### 7. Testing the setup
+1) Navigate System -> Custom Commands
+2) Select tab _Configure_
+3) Add and save custom command that runs:
+```
+netstat -tulpn_
+```
+4) Click _Save & Apply_
+5) Return to the tab Dashboard
+6) Run the created command
+7) Confirme the PID of the mosquitto process to confirm MQTT broker is running (you should see something like 0.0.0.0.0:1883, LISTENING at 3930/mosquitto (PID/mosquitto)).
+8) To test whether it is working, disconnect phones from MARIA NETWORK, and connected to your own IOT14 WiFi.
+9) With one of the phones subscribed to topic Crocodile/mqtt/#, the other publishes a test message separately on Crocodile/mqtt/test1 and Crocodile/mqtt/test2. Screenshots below.
 
 
 # Extra optional task
 1) We first installed the dependency: **kmod-usb-net-rndis**
-2) We created new interface **usb0**, the device **eth1** chose the firewall **wan wan6**
-3) It works when we pinged openwrt.org, even after removing the connection to our switch.
+```
+opkg update kmod-usb-net-rndis
+```
+2) Connect phone to Mango router using USB cable
+3) Enable USB tethering in the phone.
+4) Close and re-open LUCI.
+5) Navigate Network -> Interfaces
+6) We created new interface **usb0**, the device **eth1** chose the firewall **wan wan6**
+7) It works when we pinged openwrt.org, even after removing the connection to our switch.
 
 ## Reflection 3
 [Reflection 3](/Reflections/ref03.md)
